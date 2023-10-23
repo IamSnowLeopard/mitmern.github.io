@@ -20,4 +20,4 @@ Reach out: https://www.linkedin.com/in/rahmat-m-05893b25/
 This body of work will continue to grow weekly or bi-weeklky so check back in periodically to track Rahmat's development. 
 
 ## License information:
-Free to use, re-use, with appropriate credit given to Rahmat Muhammad 
+Free to use / re-use (unless otherwise indicated in each project folder). Whatever you do, just give credit where credit is due. 
