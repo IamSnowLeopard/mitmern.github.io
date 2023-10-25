@@ -49,3 +49,14 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn.btn-primary  {
+    background-color: #333;
+    border-color:goldenrod;
+}
