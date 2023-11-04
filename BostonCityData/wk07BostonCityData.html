@@ -1,0 +1,56 @@
+<div id="container">
+  <!-- populated by boston salary data-->
+</div>
+<script src="./boston.js"></script>
+
+<!-- create the HTML structure for the table -->
+<table id="table">
+  <thead>
+  <tr>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Title</th>
+      <th>Department</th>
+      <th>Zipcode</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <!-- generate the table head and create rows -->
+    <script>
+        boston.data.sort((a, b) => b[11] - a[11]);
+
+        const tbody = document.querySelector("#table tbody");
+
+        let len = boston.data.length;
+        for (let i = 0; i < len; i++) {
+          let row = document.createElement("tr");
+          
+          let nameCell = document.createElement("td");
+          nameCell.textContent = boston.data[i][8];
+          row.appendChild(nameCell);
+
+          let salaryCell = document.createElement("td");
+          salaryCell.textContent = boston.data[i][11];
+          row.appendChild(salaryCell);
+
+          let titleCell = document.createElement("td");
+          titleCell.textContent = boston.data[i][9];
+          row.appendChild(titleCell);
+
+          let deptCell = document.createElement("td");
+          deptCell.textContent = boston.data[i][10];
+          row.appendChild(deptCell);
+
+          let zipCell = document.createElement("td");
+          zipCell.textContent = boston.data[i][19];
+          row.appendChild(zipCell);
+
+          tbody.appendChild(row);
+        }
+    
+    </script>
+
+  </tbody>
+</table>
+

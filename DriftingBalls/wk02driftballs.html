@@ -30,9 +30,9 @@
 
 <style>
     #ball-container {
-        width: 300px;
-        height: 300px;
-        border: 1px solid #000;
+        width: 400px;
+        height: 400px;
+        background-color:gold;
         position: absolute;
         top: 200px;
         left: 10%;
@@ -54,10 +54,11 @@
                 ballElement.style.position = 'relative';
                 ballElement.style.left = (i * 60) + 'px';
                 ballElement.style.top = '0px';
-                ballElement.style.width = '50px';
-                ballElement.style.height = '50px';
+                ballElement.style.width = '70px';
+                ballElement.style.height = '70px';
                 ballElement.style.borderRadius = '50%';
-                ballElement.style.background = 'red';
+                ballElement.style.background = 'white';
+                ballElement.style.boxShadow = '5px 5px 15px rgba(0,0,0,0.3)';
 
                 //Append the ball elelent to the ball container
                 ballContainer.appendChild(ballElement);
@@ -80,7 +81,7 @@
                     ball.el.style.left = ball.xPosition +'px';
                     ball.el.style.top = ball.yPosition + 'px';
 
-                    if (ball.xPosition + 50 >=300 || ball.xPosition <=0) {
+                    if (ball.xPosition + 50 >=380 || ball.xPosition <=0) {
                         ball.xVelocity = -ball.xVelocity;
                     }
 
