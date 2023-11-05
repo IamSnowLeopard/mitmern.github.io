@@ -1,10 +1,16 @@
-<div id="container">
-  <!-- populated by boston salary data-->
-</div>
+<div id="container"></div>
+
+<!-- populated by boston salary data-->
 <script src="./boston.js"></script>
+
+<button id="sortDepartment">Sort by Department</button>
+<button id="sortSalary">Sort by Salary</button>
+<button id="sortZipcode">Sort by Zipcode</button>
+
 
 <!-- create the HTML structure for the table -->
 <table id="table">
+  <link rel="stylesheet" href="boston.css">
   <thead>
   <tr>
       <th>Name</th>
@@ -18,9 +24,26 @@
 
   <!-- generate the table head and create rows -->
     <script>
-        boston.data.sort((a, b) => b[11] - a[11]);
 
+      function sortByDepartment() {
+        boston.data.sort((a, b) => a[10].localeCompare(b[10]));
+         populateTable();
+      }
+
+      function sortBySalary() {
+        boston.data.sort((a, b) => b[11] - a[11]);
+          populateTable();
+      }
+
+      function sortByZipcode() {
+        boston.data.sort((a, b) => a[19] - (b[19]));
+          populateTable();
+      }
+
+
+      function populateTable() {
         const tbody = document.querySelector("#table tbody");
+          tbody.innerHTML = ''; // Clear the previous rows
 
         let len = boston.data.length;
         for (let i = 0; i < len; i++) {
@@ -48,6 +71,12 @@
 
           tbody.appendChild(row);
         }
+    }
+
+document.getElementById('sortDepartment').addEventListener('click', sortByDepartment);
+document.getElementById('sortSalary').addEventListener('click', sortBySalary);
+document.getElementById('sortZipcode').addEventListener('click', sortByZipcode);
+
     
     </script>
 

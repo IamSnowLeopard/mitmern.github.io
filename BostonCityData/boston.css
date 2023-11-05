@@ -1,0 +1,29 @@
+/* Apply styles to the table with id 'table' */
+#table {
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+/* Style for table headers */
+#table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for table data */
+#table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Add zebra striping for rows */
+#table tr:nth-child(even) {
+    background-color: gainsboro;
+}
+
+/* Add hover effect for rows */
+#table tr:hover {
+    background-color: #ddd;
+}
