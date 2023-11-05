@@ -27,3 +27,21 @@
 #table tr:hover {
     background-color: #ddd;
 }
+
+#sortDepartment {
+    background-color: gold;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#sortSalary {
+    background-color: gold;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#sortZipcode {
+    background-color: gold;
+    padding: 8px;
+    border-radius: 5px;
+}

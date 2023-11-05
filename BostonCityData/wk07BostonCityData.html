@@ -1,12 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Boston Salary Data</h1>
+        <p><a href="https://pollysnips.s3.amazonaws.com/bostonEmployeeSalaries.json">Data Source</a></p>
+        <nav>
+            <ul>
+                <li><a href="../coursework.html">Back</a></li>
+                <li><a href=https://www.linkedin.com/in/rahmat-m-05893b25>About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Main Content -->
+<main>
 <div id="container"></div>
 
 <!-- populated by boston salary data-->
 <script src="./boston.js"></script>
 
+<!-- create button elements -->
+
 <button id="sortDepartment">Sort by Department</button>
 <button id="sortSalary">Sort by Salary</button>
 <button id="sortZipcode">Sort by Zipcode</button>
 
+<br>
 
 <!-- create the HTML structure for the table -->
 <table id="table">
@@ -73,13 +105,23 @@
         }
     }
 
+
 document.getElementById('sortDepartment').addEventListener('click', sortByDepartment);
 document.getElementById('sortSalary').addEventListener('click', sortBySalary);
 document.getElementById('sortZipcode').addEventListener('click', sortByZipcode);
 
+sortBySalary();
     
     </script>
 
   </tbody>
 </table>
 
+</main>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2023 Rahmat Muhammad. All rights reserved.</p>
+</footer>
+</body>
+</html>
