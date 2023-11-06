@@ -4,7 +4,8 @@
 //  the first position is used for  
 //  for column names and point labels
 // -------------------------------------
-var dataset = [['x', 'y']];
+//var dataset = [['x', 'y']];
+var dataset = [[`Salary`]];
 
 
 //  build dataset
@@ -16,7 +17,8 @@ function generateDataset(points){
   for (var i=0; i<length; i++){
       var p = points[i];
       //var point = [p.x, p.y];
-      var point = [i, p.salary];
+      //var point = [i, p.salary];
+      var point = [p.salary];
       dataset[index] = point;
       index++;
   }
@@ -34,12 +36,14 @@ function drawChart(dataset) {
 
   var options = {
     title: 'City of Chicago Salaries',
-     pointSize: 1,
-     curveType: 'function',
-     vAxis: {gridlines:{count:20}}
+     //pointSize: 1,
+     //curveType: 'function',
+     //vAxis: {gridlines:{count:20}}
+     histogram: { bucketSize: 5000}
   };
 
   var target = document.getElementById('chart_div');
-  var chart = new google.visualization.ScatterChart(target);
+  // var chart = new google.visualization.ScatterChart(target);
+  var chart = new google.visualization.Histogram(target);
   chart.draw(data, options);
 }
