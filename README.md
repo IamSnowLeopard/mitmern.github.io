@@ -5,7 +5,7 @@
 MIT MERN Course Projects completed by Rahmat Muhammad
 
 ## Description: 
-A repository of required and self-imposed class assignments completed between September 2023 to present.   
+This is a repository of required and self-imposed class assignments and projects completed between September 2023 to present.   
 
 ## GitHub Pages: 
 https://iamsnowleopard.github.io/mitmern.github.io/
