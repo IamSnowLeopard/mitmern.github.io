@@ -1,29 +1,17 @@
 
-//  dataset is a two dimensional array 
-//  the inner format is [x, y]
-//  the first position is used for  
-//  for column names and point labels
-// -------------------------------------
-//var dataset = [['x', 'y']];
 var dataset = [[`Salary`]];
 
 
 //  build dataset
-// -------------------------------------
-function generateDataset(points){
-  var datapoint = [];
-  var index = 1;
-  var length = points.length;
-  for (var i=0; i<length; i++){
-      var p = points[i];
-      //var point = [p.x, p.y];
-      //var point = [i, p.salary];
-      var point = [p.salary];
-      dataset[index] = point;
-      index++;
+function generateDataset(points) {
+  var newDataset = [[`Salary`]]; // Create a new dataset array
+  for (var i = 0; i < points.length; i++) {
+      var point = [points[i].salary];
+      newDataset.push(point); // Add new point to the dataset
   }
-  return dataset;
+  return newDataset;
 }
+
 
 
 //  draw graph
@@ -31,19 +19,15 @@ function generateDataset(points){
 google.load("visualization", "1", {packages:["corechart"]});
 
 function drawChart(dataset) {
+  window.currentDataset = dataset; 
 
   var data = google.visualization.arrayToDataTable(dataset);
 
   var options = {
     title: 'City of Chicago Salaries',
-     //pointSize: 1,
-     //curveType: 'function',
-     //vAxis: {gridlines:{count:20}}
      histogram: { bucketSize: 5000}
   };
 
-  var target = document.getElementById('chart_div');
-  // var chart = new google.visualization.ScatterChart(target);
-  var chart = new google.visualization.Histogram(target);
-  chart.draw(data, options);
+  var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+    chart.draw(data, options);
 }

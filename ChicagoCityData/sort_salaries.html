@@ -1,38 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <!-- <script src="https://www.google.com/jsapi"></script> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Chicago Salary Data</h1>
+        <p><a href="https://data.cityofchicago.org/browse?limitTo=datasets&q=\Budget+Ordinance+-+Positions+and+Salaries\">Data Source</a></p>
+        <nav>
+            <ul>
+                <li><a href="../coursework.html">Back</a></li>
+                <li><a href=https://www.linkedin.com/in/rahmat-m-05893b25>About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<body>
     <script src="loader.js"></script>
     <script src="chart.js"></script>
     <script src="salaries.js"></script>
 
-    <div id="chart_div" style="width: 1280px; height: 1280px;">
-             
-    <!-- add a drop down element for position titles -->
-        <select id = "positionTitle"> 
-             </select>
+    <style>
+        .center-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 5vh;
+        }
+    </style>
 
-    <script>
+    <!-- Dropdown for Job Types -->
+    <div class="center-div">
+        <select id="jobTypeSelect" onchange="updateChart()">
+            <option value="all">All Job Types</option>
+        </select>
+    </div>
 
-    //populate the drop down
+     <!-- Container for Charts  -->
+    <div id="chart_div" style="width: 80%; height: 80vh;"></div>
 
+    <script>   
         const salaries = chicago.data;
 
-        const generatePoints = function(){
+        // Populate Dropdown with Job Types
+        function populateJobTypes() {
+            const jobTypes = Array.from(new Set(salaries.map(item => item[9])));
+            jobTypes.sort();
 
+            const select = document.getElementById('jobTypeSelect');
+                jobTypes.forEach(job => {
+                    const option = document.createElement('option');
+                    option.value = option.text = job;
+                    select.add(option);
+                });
+        }
+        
+        const generatePoints = function(jobType = 'all'){
             const points = [];
-
             salaries.forEach(function(item) {
-                points.push({
-                    job : item[9],
+                if (jobType === 'all' || item[9] === jobType) {
+                    points.push({
+                    job: item[9],
                     salary: Number(item[11])
                 });
-            });
+            }
+        });
 
-            // order by salary
             points.sort(compare);
-
             return points;
-        };
+    };
+
+    // Update Chart based on selected job type
+        function updateChart() {
+            const selectedJobType = document.getElementById('jobTypeSelect').value;
+            const points = generatePoints(selectedJobType); // Get new points based on job type
+            const newDataset = generateDataset(points); // Generate new dataset
+            drawChart(newDataset); // Draw chart with new dataset
+}
 
         function compare(a,b) {
            if (a.salary < b.salary) return -1;
@@ -41,11 +93,20 @@
         }
 
         window.onload = function run() {
-            const points = generatePoints();
-            const dataset = generateDataset(points);
-            drawChart(dataset)
+            populateJobTypes(); // Call this to populate the dropdown
+            updateChart(); // Draw initial chart
         }
 
+        window.onresize = function() {
+            drawChart(window.currentDataset); // Redraw the chart with the current dataset
+        };
+
     </script>
-    </div>
+
+    <!-- Footer Section -->
+<footer>
+    <p>&copy; 2023 Rahmat Muhammad. All rights reserved.</p>
+</footer>
+</body>
+
 </html>
