@@ -8,21 +8,23 @@
     <link rel="stylesheet" href="../styles.css">
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Header Section -->
+    <!-- Include Course Work Header Reusuable Block -->
     <header>
-        <h1>Rahmat's Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="../coursework.html">Back</a></li>
-                <li><a href=https://www.linkedin.com/in/rahmat-m-05893b25>About Me</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+        <h1>Pacman</h1>
+        <div id="header-placeholder"></div>
+        <script>
+            $(function(){
+                $("#header-placeholder").load("../headercoursework.html");
+            });
+        </script>
+        </header>
 
     <!--Define HTML elements -->
     <div id="square" style = " 

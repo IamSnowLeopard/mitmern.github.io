@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,11 @@
 <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
 
     <!-- Header Section -->
@@ -18,8 +23,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href=https://www.linkedin.com/in/rahmat-m-05893b25>About Me</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href=https://www.linkedin.com/in/rahmat-m-05893b25>LinkedIn</a></li>
+                <li><a href="#contact">Book Appointment</a></li>
             </ul>
         </nav>
     </header>
@@ -28,6 +33,7 @@
     <main>
         <div class="container mt-5">
             <div class="row">
+                
                 <!-- Project 1 -->
                 <div class="col-md-4 mb-4">
                     <img src="MIT MERN.png" alt="Project 1" class="img-fluid">
@@ -54,9 +60,12 @@
 
     </main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2023 Rahmat Muhammad. All rights reserved.</p>
-    </footer>
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        $(function(){
+            $("#footer-placeholder").load("footer.html");
+        });
+    </script>
 </body>
 </html>
