@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+    <!-- Include Course Work Header Reusuable Block -->
+    <header>
+        <h1>Dynamic Grid</h1>
+        <div id="header-placeholder"></div>
+        <script>
+            $(function(){
+                $("#header-placeholder").load("../headercoursework.html");
+            });
+        </script>
+    </header>
+
+<!-- Main Content -->
+<body>
+    <style>
+        .content{
+            display: grid;
+            grid-template-columns: repeat(10,1fr);
+            grid-template-rows: repeat(10,1fr);
+            gap: 5px;
+        }
+        div{
+            padding: 10px;
+            text-align: center;
+            border-style: solid;
+            font-size: 1em;
+        }
+        .grid-button{
+            background-color: gold;
+            border: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+
+<main>
+    <button class = "grid-button" onclick="createGrid()">Click to Create Grid</button>    
+    <button class = "grid-button" onclick="move()" style="margin-bottom: 10px;">Then Click to Move</button>
+    <main class="content" id="target">
+
+    <script>
+       const gridSize = 100;
+
+        //create the grid
+        function createGrid(){
+            for (let i = 1; i<=gridSize; i++){
+                var div = document.createElement("div");
+                div.id = "n"+i;
+                div.innerText = i;
+                document.getElementById("target").appendChild(div);
+            }
+        }
+
+        //generate 100 random colors
+        function getRandomColor(){
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function move(){
+                for (let i=1; i<=gridSize; i++){
+                    setTimeout(function(){
+                        let element = document.getElementById("n"+i);
+                        if (element) {
+                        element.style.backgroundColor = getRandomColor();
+                    }
+                }, 100 * i)
+
+                setTimeout(function(){
+                        let element = document.getElementById("n"+i)
+                        if (element) {
+                        element.style.backgroundColor = ''; // Reset background color
+                    }
+                }, 100 * i + 100);
+            }
+        }
+    </script>
+</main>
+
+<!-- Include Footer Reusable Block -->
+<div id="footer-placeholder"></div>
+<script>
+    $(function(){
+        $("#footer-placeholder").load("../footer.html");
+    });
+</script>
+
+</body>
+</html>
