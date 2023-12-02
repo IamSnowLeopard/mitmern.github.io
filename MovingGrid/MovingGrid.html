@@ -61,14 +61,18 @@
 
     <script>
        const gridSize = 100;
-
-        //create the grid
+   
         function createGrid(){
+            // Clear existing grid
+            var target = document.getElementById("target");
+            target.innerHTML = ''; // This line will remove all child elements in the grid
+
+            // Create new cells
             for (let i = 1; i<=gridSize; i++){
                 var div = document.createElement("div");
                 div.id = "n"+i;
                 div.innerText = i;
-                document.getElementById("target").appendChild(div);
+                target.appendChild(div);
             }
         }
 
@@ -101,6 +105,10 @@
         }
     </script>
 </main>
+
+<br>
+<a href="https://github.com/IamSnowLeopard/mitmern.github.io/tree/main/MovingGrid" class="btn btn-primary">View Code</a>
+<br>
 
 <!-- Include Footer Reusable Block -->
 <div id="footer-placeholder"></div>
