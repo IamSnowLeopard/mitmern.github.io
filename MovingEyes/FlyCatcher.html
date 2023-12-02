@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+    <!-- Include Course Work Header Reusuable Block -->
+    <header>
+    <h1>Fly Catcher</h1>
+    <div id="header-placeholder"></div>
+    <script>
+        $(function(){
+            $("#header-placeholder").load("../headercoursework.html");
+        });
+    </script>
+    </header>
+
+<!-- Main Content -->
+<body>
+    <!-- Style the eyes -->
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: gold;
+    }
+
+    .eyes {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+    }
+    .eye {
+      width: 240px;
+      height: 120px;
+      background: #fff;
+      display: inline-block;
+      margin: 40px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    .ball {
+      width: 80px;
+      height: 80px;
+      background: #000;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    </style>
+
+<main>
+    <!--add buttons and fly container-->
+    <button onclick = "addFlies()">Add Flies!</button>
+    <button class="catchFlies" onclick = "catchFlies()">Catch Flies!</button>
+    <div id="flyContainer" style="width: 800px; height: 800px; position: relative;"></div>
+
+    <!--add eyes-->
+    <div class="eyes">
+        <div class="eye">
+          <div class="ball"></div>
+        </div>
+        <div class="eye">
+            <div class="ball"></div>
+          </div>
+    </div>
+
+<script>
+
+    let flyCount = 0;
+
+    //add flies into the container
+    function addFlies(){
+        let fly = document.createElement("img"); //get handle of the fly
+        fly.src = "ladybug.png"
+        fly.style.position = "absolute";
+        fly.id = "fly" + flyCount++;
+        fly.width = 50;
+        fly.height = 50;
+
+        let container = document.getElementById('flyContainer');
+        fly.style.left = Math.floor(Math.random() * (container.clientWidth - fly.width)) + 'px'; //restrict left and right mvmt
+        fly.style.top = Math.floor(Math.random() * (container.clientHeight - fly.height)) + 'px'; //restrict top and bottom mvtm
+
+        //define velocity of bug movement
+        fly.velocity = {
+        x: Math.random() * 4 - 2,
+        y: Math.random() * 4 - 2
+        };
+
+        container.appendChild(fly);
+
+        //remove a fly on click
+        fly.addEventListener('click', function(){
+            this.remove();
+        });
+
+    }
+
+    //define how the flies should move
+    function moveFly(fly) {
+        let container = document.getElementById('flyContainer'); //get handle of all the flies in the container
+        let interval = setInterval(function() {
+            if (!document.body.contains(fly)) {
+                clearInterval(interval); // Stop interval if fly is removed
+            return;
+        }
+
+        let x = parseInt(fly.style.left, 10); //convert the string x position into integer 
+        let y = parseInt(fly.style.top, 10);
+
+        x += fly.velocity.x; //updates x position based on velocity
+        y += fly.velocity.y;
+
+        //reverse direction when fly hits container edges 
+        if (x <= 0 || x >= container.clientWidth - fly.width) {
+            fly.velocity.x *= -1;
+        }
+        if (y <= 0 || y >= container.clientHeight - fly.height) {
+            fly.velocity.y *= -1;
+        }
+
+        fly.style.left = x + 'px'; //update fly position
+        fly.style.top = y + 'px';
+    }, 20);
+}
+
+//callback function to actually move the flies
+function catchFlies() {
+    for (let i = 0; i < flyCount; i++) {
+        var fly = document.getElementById('fly' + i);
+        if (fly) {
+            moveFly(fly);
+        }
+    }
+}
+
+//move eyes according to cursor position
+let balls = document.getElementsByClassName("ball");
+    document.onmousemove = () => {
+      var x = (event.clientX * 100) / window.innerWidth + "%";
+      var y = (event.clientY * 100) / window.innerHeight + "%";
+
+      for (let i = 0; i < 2; i++) {
+        balls[i].style.left = x;
+        balls[i].style.top = y;
+        balls[i].transfoorm = "translate(-" + x + ",-" + y + ")";
+      }
+    };
+</script>
+</main>
+
+<br>
+<a href="https://github.com/IamSnowLeopard/mitmern.github.io/tree/main/MovingGrid" class="btn btn-primary">View Code</a>
+<br>
+
+<!-- Include Footer Reusable Block -->
+<div id="footer-placeholder"></div>
+<script>
+    $(function(){
+        $("#footer-placeholder").load("../footer.html");
+    });
+</script>
+
+</body>
+</html>
