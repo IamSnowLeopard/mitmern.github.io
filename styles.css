@@ -83,10 +83,10 @@ footer {
 
 .btn.btn-primary  {
     background-color: #333;
-    border-color:goldenrod;
+    border-color:rgb(255, 181, 32);
 }
 
 .btn.btn-primary:hover {
-    background-color: goldenrod;
-    border-color: goldenrod;
+    background-color: rgb(255, 181, 32);
+    border-color: rgb(255, 181, 32);
 }
