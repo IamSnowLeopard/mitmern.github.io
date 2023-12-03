@@ -85,3 +85,8 @@ footer {
     background-color: #333;
     border-color:goldenrod;
 }
+
+.btn.btn-primary:hover {
+    background-color: goldenrod;
+    border-color: goldenrod;
+}
