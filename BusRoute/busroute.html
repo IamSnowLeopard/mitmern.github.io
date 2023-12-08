@@ -7,7 +7,7 @@
 
     <!--Add Google Maps library and Styles-->
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQrK_5xjlOp_mLurNCGgtfXyv0PSVCp2Q&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap">
     </script>
 
     <style>
@@ -20,55 +20,56 @@
             padding: 0;
         }
     </style>
-
 </head>
+
 <body>
   <div id="map"></div>
   <div class="map-overlay top">
-    <button style="font-size: 2em;" onclick="move()">
+    <button style="font-size: 2em;" onclick="startBusRoute()">
         Show stops between MIT and Harvard
      </button>
 </div>
 
 <!--Create a bus route on a map-->
 <script>
-
     let map;
+    let marker;
+    let busStops = [];
 
-    async function initMap() {
-        const { Map } = await google.maps.importLibrary("maps");
-
-        map = new Map(document.getElementById("map"), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8,
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 42.358862, lng: -71.09152 },
+            zoom: 14,
     });
-}
-
-initMap();
 
     //add a marker
-    let marker = new map.Marker()
-        .setLngLat([-71.09152, 42.358862])
-        .addTo(map);
+    marker = new google.maps.Marker({
+        position: { lat: 42.358862, lng: -71.09152 },
+        map: map,
+    });
+}
 
     //get a hold of the busstops in a programmatic way
    async function getBusLocations(){
     let url = 'https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip';
     let response = await fetch(url);
     let json = await response.json();
-    return json.data;
+    return json.data.map(bus => ({lat: bus.attributes.latitude, lng: bus.attributes.longitude}));
    }
 
+   //trigger the marker movement
+   async function startBusRoute() {
+    busStops = await get BusLocations();
+    move();
+   }
 
     //move the marker
     let counter = 0;
     function move(){
-        setTimeout(() => {
             if (counter >= busStops.length) return;
-            marker.setLngLat(busStops[counter]);
+            marker.setPosition(busStops[counter]);
             counter++;
-            move();
-        }, 1000)
+            setTimeout(move, 1000);
     }
 </script>
 
