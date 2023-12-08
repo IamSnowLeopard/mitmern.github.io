@@ -30,7 +30,7 @@
      </button>
 </div>
 
-<!--Create a bus route on a map-->
+<!--initialize the map on Boston-->
 <script>
     let map;
     let marker;
@@ -59,7 +59,7 @@
 
    //trigger the marker movement
    async function startBusRoute() {
-    busStops = await get BusLocations();
+    busStops = await getBusLocations();
     move();
    }
 
