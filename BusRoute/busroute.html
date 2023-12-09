@@ -34,7 +34,7 @@
 <script>
     let map;
     let marker;
-    let busStops = [];
+   // let busStops = [];
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
@@ -59,18 +59,14 @@
 
    //trigger the marker movement
    async function startBusRoute() {
-    busStops = await getBusLocations();
-    move();
-   }
-
-    //move the marker
-    let counter = 0;
-    function move(){
-            if (counter >= busStops.length) return;
-            marker.setPosition(busStops[counter]);
-            counter++;
-            setTimeout(move, 1000);
+    try {
+        let busLocation = await getBusLocations();
+        marker.setPosition(busLocation);
+    } catch (error) {
+        console.error("Error fetching bus location:", error)
     }
+    setTimeonut(startBusRoute,15000);
+   }
 </script>
 
 </body>
