@@ -21,8 +21,9 @@
             padding: 0;
         }
 
-        .map-overlay{
+        .map-overlay-top{
             position: absolute;
+            top: 0;
             left: 0;
             padding: 10px;
         }
@@ -31,7 +32,7 @@
 
 <body>
   <div id="map"></div>
-  <div class="map-overlay top">
+  <div class="map-overlay-top">
     <button style="font-size: 2em;" onclick="move()">
         Show stops between MIT and Harvard
      </button>
@@ -41,7 +42,6 @@
 <script>
     let map;
     let marker;
-   // let busStops = [];
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
