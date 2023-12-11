@@ -14,10 +14,17 @@
         #map {
             height: 100%;
         }
+
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
+        }
+
+        .map-overlay{
+            position: absolute;
+            left: 0;
+            padding: 10px;
         }
     </style>
 </head>
@@ -25,7 +32,7 @@
 <body>
   <div id="map"></div>
   <div class="map-overlay top">
-    <button style="font-size: 2em;" onclick="startBusRoute()">
+    <button style="font-size: 2em;" onclick="move()">
         Show stops between MIT and Harvard
      </button>
 </div>
@@ -44,7 +51,7 @@
 
     //add a marker
     marker = new google.maps.Marker({
-        position: { lat: 42.358862, lng: -71.09152 },
+        position: { lat: -71.092761, lng: 42.357575 },
         map: map,
     });
 }
@@ -58,15 +65,16 @@
    }
 
    //trigger the marker movement
-   async function startBusRoute() {
-    try {
-        let busLocation = await getBusLocations();
-        marker.setPosition(busLocation);
-    } catch (error) {
-        console.error("Error fetching bus location:", error)
-    }
-    setTimeonut(startBusRoute,15000);
+   async function run() {
+        let locations = await getBusLocations();
+        console.log(new Date());
+        console.log(locations);
+
+        //timer
+        setTimeout(run, 15000);
    }
+
+   run();
 </script>
 
 </body>
