@@ -69,10 +69,10 @@ async function getBusLocations(){
 
 function getIcon(bus) {
     // Define the size of the icon
-    var iconSize = new google.maps.Size(20, 20); // Adjust the size (width, height) as needed
+    let iconSize = new google.maps.Size(2, 2); // Adjust the size (width, height) as needed
 
     // Define the icon options
-    var iconOptions = {
+    let iconOptions = {
         url: (bus.attributes.direction_id === 0) ? 'red.png' : 'blue.png', // Icon URL
         scaledSize: iconSize // Scale the icon
     };
