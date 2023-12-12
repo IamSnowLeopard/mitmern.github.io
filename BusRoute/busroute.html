@@ -41,20 +41,21 @@
 <!--initialize the map on Boston-->
 <script>
     let map;
-    let marker;
+    let markers = new Map();
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 42.358862, lng: -71.09152 },
-            zoom: 14,
-    });
-
-    //add a marker
-    marker = new google.maps.Marker({
-        position: { lat: 42.357575, lng: -71.092761 },
-        map: map,
+            zoom: 20,
     });
 }
+
+    //add a marker
+   // marker = new google.maps.Marker({
+     //   position: { lat: 42.357575, lng: -71.092761 },
+    //    map: map,
+   // });
+//}
 
     //get a hold of the busstops in a programmatic way
    async function getBusLocations(){
@@ -64,11 +65,29 @@
     return json.data.map(bus => ({lat: bus.attributes.latitude, lng: bus.attributes.longitude}));
    }
 
+   //update markers
+   function updateMarkers(buses) {
+        buses.forEach(bus => {
+            const busID = bus.id;
+            const position = new google.maps.LatLng(bus.attributes.latitude, bus.attributes.longitude);
+        
+            if (markers.has(busID)) {
+                markers.get(busId).setPosition(position);
+            } else {
+                const marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                });
+                markers.set(busId, marker);
+            }
+        });
+   }
+
    //trigger the marker movement
    async function run() {
-        let locations = await getBusLocations();
-        if (locations && locations.length >0) {
-            marker.setPosition(new google.maps.LatLng(locations[0].lat, locations[0].lng));
+        let buses = await getBusLocations();
+        if (buses) {
+            updateMarkers(buses);
         }
         console.log(new Date());
         console.log(locations);
