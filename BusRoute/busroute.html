@@ -67,12 +67,17 @@ async function getBusLocations(){
 	markers.push(marker);
 }
 
-function getIcon(bus){
-	// select icon based on bus direction
-	if (bus.attributes.direction_id === 0) {
-		return 'red.png';
-	}
-	return 'blue.png';	
+function getIcon(bus) {
+    // Define the size of the icon
+    var iconSize = new google.maps.Size(20, 20); // Adjust the size (width, height) as needed
+
+    // Define the icon options
+    var iconOptions = {
+        url: (bus.attributes.direction_id === 0) ? 'red.png' : 'blue.png', // Icon URL
+        scaledSize: iconSize // Scale the icon
+    };
+
+    return iconOptions;
 }
 
 function moveMarker(marker,bus) {
