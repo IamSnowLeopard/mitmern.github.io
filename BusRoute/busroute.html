@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Route</title>
-
     <!--Add Google Maps library and Styles-->
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap">
-        <div id="map" style="width:1024px; height:768px"></div>
-    </script>
-</head>
-
-<body>
-<!--initialize the map on Boston-->
-<script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap"></script>
+    <div id="map" style="width:1024px; height:768px"></div>
+  
+    <script>
     let map;
     let markers = [];
 
+    //initialize the map on Boston
     function init(){
 	    let myOptions = {
 		    zoom      : 14,
@@ -27,11 +20,11 @@
 	    let element = document.getElementById('map');
   	    map = new google.maps.Map(element, myOptions);
   	    addMarkers();
-}
+    }
 
 
-// Add bus markers to map
-async function addMarkers(){
+    // Add bus markers to map
+    async function addMarkers(){
 	// get bus data
 	let locations = await getBusLocations();
 
@@ -105,5 +98,4 @@ window.onload = init;
 
 </script>
 
-</body>
 </html>
