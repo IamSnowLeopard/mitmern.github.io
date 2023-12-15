@@ -16,6 +16,21 @@ header {
     text-align: center;
 }
 
+.fade-in-left {
+    animation: fadeInLeft 5s;
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* .navbar {
     background: url('cover.jpg') no-repeat center center;
     background-size: cover;
