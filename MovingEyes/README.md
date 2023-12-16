@@ -2,7 +2,7 @@
 #  mitmern.github.io/MovingEyes
 
 ## Project Name: 
-Fly Catcher completed by Rahmat Muhammad
+Fly Catcher (for desktop and tablet only) completed by Rahmat Muhammad
 
 ## Description: 
 This is a fun, interactive web application that generates flies as objects on click events and launches them in random directions within a container. A pair of eyes follow your cursor movement as you "chase" each fly. Clicking on a fly makes it disappear from the screen.
