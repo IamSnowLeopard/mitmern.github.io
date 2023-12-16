@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NJ Transit Bus Route</title>
-    <!--Add Google Maps library and Styles-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap"></script>
-    <div id="map" style="width:1920px; height:768px"></div>
+    <title>NY Metro Bus Route</title>
 </head>
 
-<script>
-    //initialize the map on NYC
-    function init(){
-	    let map = {
-		    zoom      : 14,
-		    center    : { lat:40.7128,lng:-71.0060},
-		    mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
+<body>
+	<div id="map" style="width:1920px; height:768px"></div>
+ 	<!--Add Google Maps library and Styles-->
+ 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap"></script>
+
+	<!--Initialize Map on NYC-->
+	<script>
+    	function initMap(){
+	    	let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: { lat: 40.7128, lng: -74.0060 },
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
   	    let transitLayer = new google.maps.TransitLayer();
   	    transitLayer.setMap(map);
     }
+	</script>
+</body>
+</html>
 
+<!--
+	window.onload = init;
 
     /* Add bus markers to map
     async function addMarkers(){
@@ -100,4 +108,4 @@ window.onload = init; */
 
 </script>
 
-</html>
+</html> -->
