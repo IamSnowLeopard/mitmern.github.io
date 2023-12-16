@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bus Route</title>
+    <title>NJ Transit Bus Route</title>
     <!--Add Google Maps library and Styles-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap"></script>
     <div id="map" style="width:1920px; height:768px"></div>
-  
-    <script>
-    let map;
-    let markers = [];
+</head>
 
-    //initialize the map on Boston
+<script>
+    //initialize the map on NYC
     function init(){
-	    let myOptions = {
+	    let map = {
 		    zoom      : 14,
-		    center    : { lat:42.353350,lng:-71.091525},
+		    center    : { lat:40.7128,lng:-71.0060},
 		    mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
-	    let element = document.getElementById('map');
-  	    map = new google.maps.Map(element, myOptions);
-  	    addMarkers();
+  	    let transitLayer = new google.maps.TransitLayer();
+  	    transitLayer.setMap(map);
     }
 
 
-    // Add bus markers to map
+    /* Add bus markers to map
     async function addMarkers(){
 	// get bus data
 	let locations = await getBusLocations();
@@ -99,7 +96,7 @@ function getMarker(id){
 	return marker;
 }
 
-window.onload = init;
+window.onload = init; */
 
 </script>
 
