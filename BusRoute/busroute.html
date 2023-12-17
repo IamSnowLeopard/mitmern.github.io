@@ -6,106 +6,50 @@
 
 <body>
 	<div id="map" style="width:1920px; height:768px"></div>
- 	<!--Add Google Maps library and Styles-->
- 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap"></script>
+ 	
+	<!--Add Google Maps library and Styles-->
+ 	<script async defer 
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap">
+	</script>
 
 	<!--Initialize Map on NYC-->
 	<script>
-    	function initMap(){
-	    	let map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: { lat: 40.7128, lng: -74.0060 },
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+		let map;
 
-  	    let transitLayer = new google.maps.TransitLayer();
-  	    transitLayer.setMap(map);
-    }
+    	function initMap(){
+	    	map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: { lat: 40.7569607, lng: -73.9904931 }
+            });
+    	
+
+		// Add markers to map
+			getBusLocations().then(locations => {
+    			locations.forEach(location => {
+        			new google.maps.Marker({
+            			position: location,
+            			map: map,
+        			});
+    			});
+			});
+		}
+
+		// Make API call to MTA SIRI VehicleMonitoring API to request information about vehicles serving a particular stop
+		async function getBusLocations(){
+			let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=34316322-b8d7-4711-bb94-c51a03ba6320&version=2&OperatorRef=MTA';	
+			let response = await fetch(url);
+			let json = await response.json();
+
+		// Extract vehicle locations from the JSON response
+		let vehicleActivities = json.Siri.ServiceDelivery.VehicleMonitoringDelivery[0].VehicleActivity;
+    	return vehicleActivities.map(activity => {
+        	return {
+            	lat: activity.MonitoredVehicleJourney.VehicleLocation.Latitude,
+            	lng: activity.MonitoredVehicleJourney.VehicleLocation.Longitude
+        	};
+    	});
+	}
+
 	</script>
 </body>
 </html>
-
-<!--
-	window.onload = init;
-
-    /* Add bus markers to map
-    async function addMarkers(){
-	// get bus data
-	let locations = await getBusLocations();
-
-	// loop through data, add bus markers
-	locations.forEach(function(bus){
-		let marker = getMarker(bus.id);		
-		if (marker){
-			moveMarker(marker,bus);
-		}
-		else{
-			addMarker(bus);			
-		}
-	});
-
-	// timer
-	console.log(new Date());
-	setTimeout(addMarkers,15000);
-}
-
-// Request bus data from MBTA
-async function getBusLocations(){
-	let url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&filter[route]=1&include=trip';	
-	let response = await fetch(url);
-	let json     = await response.json();
-	return json.data;
-}
-
-   //update markers
-   function addMarker(bus){
-	let icon = getIcon(bus);
-	let marker = new google.maps.Marker({
-	    position: {
-	    	lat: bus.attributes.latitude, 
-	    	lng: bus.attributes.longitude
-	    },
-	    map: map,
-	    icon: icon,
-	    id: bus.id
-	});
-	markers.push(marker);
-}
-
-function getIcon(bus) {
-    // Define the size of the icon
-    let iconSize = new google.maps.Size(4, 4); // Adjust the size (width, height) as needed
-
-    // Define the icon options
-    let iconOptions = {
-        url: (bus.attributes.direction_id === 0) ? 'red.png' : 'blue.png', // Icon URL
-        scaledSize: iconSize // Scale the icon
-    };
-
-    return iconOptions;
-}
-
-function moveMarker(marker,bus) {
-	// change icon if bus has changed direction
-	let icon = getIcon(bus);
-	marker.setIcon(icon);
-
-	// move icon to new lat/lon
-    marker.setPosition( {
-    	lat: bus.attributes.latitude, 
-    	lng: bus.attributes.longitude
-	});
-}
-
-function getMarker(id){
-	let marker = markers.find(function(item){
-		return item.id === id;
-	});
-	return marker;
-}
-
-window.onload = init; */
-
-</script>
-
-</html> -->
