@@ -33,10 +33,10 @@
 			markers.forEach(marker => marker.setMap(null));
 			markers = [];
 
-
 		// Add markers to map
 		let locations = await getBusLocations();
     	locations.forEach(location => {
+			//define the type of icon
         	const icon = {
             	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
             	scale: 8,
@@ -46,10 +46,12 @@
             	rotation: location.bearing, // Rotate the icon based on bearing
 			};
 
+			//attach lat and lng to the icon
         	const marker = new google.maps.Marker({
             	position: {lat: location.lat, lng: location.lng},
             	map: map,
             	icon: icon,
+				//add route IDs 
             	label: {
                 	text: location.routeId.toString(),
                 	color: 'red',
@@ -62,15 +64,15 @@
     	});
 	}
 
-		// Make API call to MTA SIRI VehicleMonitoring API to request information about vehicles on a certain route
+		// Make API call get real time bus data
 		async function getBusLocations(){
-			//let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=f6874be6-b49f-457c-acb3-54463cafcc0e&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4';	
-			let url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&include=trip';	
+			//let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=f6874be6-b49f-457c-acb3-54463cafcc0e&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4'; //NYC MTA	
+			let url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&include=trip';	 //Boston MBTA
 			let response = await fetch(url);
 			let json = await response.json();
 
 
-		// Extract vehicle locations from the JSON response
+		// Extract vehicle lng and lat, bearing, and routeID from the JSON response
 		return json.data.map(vehicle => {
         	return {
             	lat: vehicle.attributes.latitude,
