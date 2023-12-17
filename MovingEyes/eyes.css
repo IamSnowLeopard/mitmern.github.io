@@ -1,12 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background: #14495e;
+  background: gold;
 }
 
 .eyes {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   transform: translateY(-50%);
   width: 100%;
   text-align: center;
