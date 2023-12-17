@@ -91,7 +91,7 @@
 		// Make API call get real time bus data
 		async function getBusLocations(){
 			//let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=f6874be6-b49f-457c-acb3-54463cafcc0e&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4'; //NYC MTA	
-			let url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&include=trip';	 //Boston MBTA
+			let url = 'https://api-v3.mbta.com/vehicles?api_key=b0dd23bb2d6c4b82abec6daf713ea23e&include=trip';	 //Boston MBTA
 			let response = await fetch(url);
 			let json = await response.json();
 
