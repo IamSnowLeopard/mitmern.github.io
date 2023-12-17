@@ -21,6 +21,9 @@ This is a fun, interactive web application that generates PacMan objects on clic
 3. Use the "Add PacMans!" button to add new images to the container
 4. Click "Launch PacMans!" to start the movement
 
+## Roadmap to future improvements: 
+1. Move the PacMen images in predictable pattern 
+
 ## Support:
 Reach out: https://www.linkedin.com/in/rahmat-m-05893b25/
 

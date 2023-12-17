@@ -23,6 +23,10 @@ This is a fun, interactive web application that generates flies as objects on cl
 3. Use the "Add Flies!" button to add new images to the container
 4. Click "Catch Flies!" to start the movement
 
+## Roadmap to future improvements: 
+1. Fix issue that causes some flies to get stuck
+2. Fix issue that prevents some flies from disappearing on click 
+
 ## Support:
 Reach out: https://www.linkedin.com/in/rahmat-m-05893b25/
 

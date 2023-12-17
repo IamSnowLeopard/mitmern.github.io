@@ -20,6 +20,10 @@ This is a web application that generates a map of MBTA Routes that are actively 
 2. Open busroute.html in a web browser to run the application
 3. Click "GitHub Repo" to access the repository
 
+## Roadmap to future improvements: 
+1. Display the routeID directly in the arrow
+2. Enable user to select specific route  
+
 ## Support:
 Reach out: https://www.linkedin.com/in/rahmat-m-05893b25/
 
