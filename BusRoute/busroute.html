@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NY Metro Bus Route</title>
+    <title>MBTA Bus Locations</title>
 </head>
 
 <body>
@@ -15,44 +15,71 @@
 	<!--Initialize Map -->
 	<script>
 		let map;
+		let  markers = []; //store array of locations
 
     	function initMap(){
 	    	map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
-                center: { lat: 40.7569607, lng: -73.9904931 }
+                center: { lat: 42.353350, lng: -71.091525 }
             });
     	
+			//update bus locations every 15 seconds
+			updateBusLocations();
+			setInterval(updateBusLocations,15000);
+		}
+
+		//remove existing markers
+		async function updateBusLocations(){
+			markers.forEach(marker => marker.setMap(null));
+			markers = [];
+
 
 		// Add markers to map
-			getBusLocations().then(locations => {
-    			locations.forEach(location => {
-        			new google.maps.Marker({
-            			position: location,
-            			map: map,
-            			icon: {
-                			path: google.maps.SymbolPath.CIRCLE,
-                			scale: 15
-            			}
-        			});
-    			});
-			});
-		}
+		let locations = await getBusLocations();
+    	locations.forEach(location => {
+        	const icon = {
+            	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            	scale: 8,
+            	fillColor: 'black',
+            	fillOpacity: 1,
+            	strokeWeight: 1,
+            	rotation: location.bearing, // Rotate the icon based on bearing
+			};
+
+        	const marker = new google.maps.Marker({
+            	position: {lat: location.lat, lng: location.lng},
+            	map: map,
+            	icon: icon,
+            	label: {
+                	text: location.routeId.toString(),
+                	color: 'red',
+                	fontSize: '20px',
+					fontWeight: 'bold',
+            	}
+        	});
+        
+			markers.push(marker);
+    	});
+	}
 
 		// Make API call to MTA SIRI VehicleMonitoring API to request information about vehicles on a certain route
 		async function getBusLocations(){
-			let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=f6874be6-b49f-457c-acb3-54463cafcc0e&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4';	
+			//let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=f6874be6-b49f-457c-acb3-54463cafcc0e&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4';	
+			let url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&include=trip';	
 			let response = await fetch(url);
 			let json = await response.json();
 
+
 		// Extract vehicle locations from the JSON response
-		let vehicleActivities = json.Siri.ServiceDelivery.VehicleMonitoringDelivery[0].VehicleActivity;
-    	return vehicleActivities.map(activity => {
+		return json.data.map(vehicle => {
         	return {
-            	lat: activity.MonitoredVehicleJourney.VehicleLocation.Latitude,
-            	lng: activity.MonitoredVehicleJourney.VehicleLocation.Longitude
-        	};
-    	});
-	}
+            	lat: vehicle.attributes.latitude,
+            	lng: vehicle.attributes.longitude,
+				bearing: vehicle.attributes.bearing,
+				routeId: vehicle.relationships.route.data.id
+			};
+   		 });
+		}
 
 	</script>
 </body>
