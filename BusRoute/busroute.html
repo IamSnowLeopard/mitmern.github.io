@@ -12,7 +12,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWk37rgb1P62pjuIjsmMhdjlOetQNO0M&callback=initMap">
 	</script>
 
-	<!--Initialize Map on NYC-->
+	<!--Initialize Map -->
 	<script>
 		let map;
 
@@ -31,16 +31,16 @@
             			map: map,
             			icon: {
                 			path: google.maps.SymbolPath.CIRCLE,
-                			scale: 15 // Size of the circle marker
+                			scale: 15
             			}
         			});
     			});
 			});
 		}
 
-		// Make API call to MTA SIRI VehicleMonitoring API to request information about vehicles serving a particular stop
+		// Make API call to MTA SIRI VehicleMonitoring API to request information about vehicles on a certain route
 		async function getBusLocations(){
-			let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=34316322-b8d7-4711-bb94-c51a03ba6320&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63';	
+			let url = 'https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=34316322-b8d7-4711-bb94-c51a03ba6320&version=2&OperatorRef=MTA&LineRef=MTA%20NYCT_M4';	
 			let response = await fetch(url);
 			let json = await response.json();
 
