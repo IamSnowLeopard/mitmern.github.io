@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+    <!-- Include Course Work Header Reusuable Block -->
+    <header>
+        <h1>Word Frequency Counter</h1>
+        <div id="header-placeholder"></div>
+        <script>
+            $(function(){
+                $("#header-placeholder").load("../headercoursework.html");
+            });
+        </script>
+    </header>
+
+<!-- Main Content -->
+<body>   
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center">Word Frequency Counter</h2>
+                <textarea id="textInput" class="form-control" placeholder="Paste your text here"></textarea>
+                <button id="processButton" class="btn btn-primary mt-2 mb-2">Process Text</button>
+                <div id="wordFrequencyOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="wordcount.js"></script>
+</body>
+</html>
+
