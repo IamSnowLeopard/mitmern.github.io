@@ -12,7 +12,7 @@ This is a web application that counts the frequency of words in text provided by
 * Display a list of words sorted by frequency from high to low 
 
 ## GitHub Pages: 
-[https://iamsnowleopard.github.io/mitmern.github.io/MovingGrid/MovingGrid.html]
+[https://iamsnowleopard.github.io/mitmern.github.io/WordCount/wordcount.html]
 
 ## How to Use:
 1. Clone the repository or download the source code
