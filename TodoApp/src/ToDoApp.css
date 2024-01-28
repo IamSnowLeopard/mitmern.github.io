@@ -1,0 +1,64 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Mansalva&family=Righteous&family=Shadows+Into+Light&display=swap');
+    
+    .my-input {
+    width: 100%;
+    border: 2px solid #cc1dbe;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgba(236, 145, 234, 0.2);
+  }
+
+  .todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: center; 
+  } 
+
+  .complete-button {
+    background-color: rgb(224, 34, 241);
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: rgb(122, 122, 122);
+    color: white;
+  }
+  
+ .complete-button, .delete-button {
+    border-radius: 10px; /* Adjust the radius as per your preference */
+  }
+  
+  .todo-title {
+    margin-bottom: 20px;
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:#4a4a4a;
+    text-align: center; /* Centers the text horizontally */
+    width: 100%; /* Ensures the title takes full width */
+    display: block; /* Makes the element a block-level element */
+  }  
+  
+  .todo-input {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .todo-list {
+    margin-top: 20px; /* Adjust as needed */
+  }
+  
+  .todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .todo-text {
+    font-family:Verdana;
+  }
+  
+  .todo-buttons {
+    align-items: center;
+    font-family:Verdana;
+  }
