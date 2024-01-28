@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# mitmern.github.io/TodoApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Name:
 
-Currently, two official plugins are available:
+Todo App completed by Rahmat Muhammad
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description:
 
-## Expanding the ESLint configuration
+This is a simple app for logging and tracking to do items.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features:
 
-- Configure the top-level `parserOptions` property like this:
+- Add to do items
+- Delete items
+- Cross out completed items
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## GitHub Pages:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[]
+
+## How to Use:
+
+1. Clone the repository or download the source code
+2. Open TodoApp.html in a web browser to run the application
+3. Type the to do item
+4. Click "Done!" or "Delete" to modify the items
+
+## Roadmap to future improvements:
+
+1. TBD
+
+## Support:
+
+Reach out: https://www.linkedin.com/in/rahmat-m-05893b25/
+
+## License:
+
+This project is open-source and free to use. It is released under the MIT License.
